@@ -9,14 +9,20 @@ function scoringFunction (score){
 }
 
 function scoreThrows(arr){
-  let totalScore = 0;
-  for(let i = 0; i < arr.length; i++){
-    totalScore += scoringFunction(arr[i]);
+  if(typeof arr !== 'object' || arr.length < 1 || arr === undefined){
+    return 'This is not an array';
+  } else {
+    let totalScore = 0;
+    for(let i = 0; i < arr.length; i++){
+      totalScore += scoringFunction(arr[i]);
+    }
+    if(totalScore === (arr.length) * 10){
+      totalScore += 100;
+    }
+    return totalScore;
   }
-  if(totalScore === (arr.length) * 10){
-    totalScore += 100;
-  }
-  return totalScore;
+
 }
 
-console.log(scoreThrows([1,2,3,4]));
+console.log(scoreThrows());
+module.exports = scoreThrows;
